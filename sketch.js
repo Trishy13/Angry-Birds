@@ -2,36 +2,35 @@ const Engine = Matter.Engine;
 const World = Matter.World;
 const Bodies = Matter.Bodies;
 
-var myWorld, myEngine;
+var myWorld, myEngine, bg;
+
+function preload(){
+    bg = loadImage("bg.png")
+}
 
 function setup(){
-createCanvas(1000,600);
+createCanvas(1200,600);
 
 myEngine = Engine.create();
 myWorld = myEngine.world;
 
+ground = new Ground(600,590,1200,20);
+bird = new Bird(200,200);
 
+box1 = new Box(800,536);
+box2 = new Box(1000,536);
+pig1 = new Pig(900,536);
 
-ground = new Ground(500,590,1000,20);
-
-box1 = Bodies.rectangle(300,200,50,100);
-World.add(myWorld, box1);
-
-box2 = Bodies.rectangle(350,100,130,50);
-World.add(myWorld, box2);
 }
 
 function draw(){
     Engine.update(myEngine);
-    background("blue");
+    background(bg);
 
     ground.display();
+    box1.display();
+    box2.display();
+    pig1.display();
+    bird.display();
 
-    
-
-    fill("red");
-    rect(box1.position.x,box1.position.y,50,100);
-
-    fill("yellow");
-    rect(box2.position.x,box2.position.y,130,50);
 }
